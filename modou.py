@@ -6,6 +6,7 @@ from local_conf import *
 
 # https://github.com/modouwifi/doc-modouwifi-api
 class Request(object):
+    API = 'http://modouwifi.net/api/'
     def __init__(self, modou, method='get'):
         self._modou = modou
         self._method = method
@@ -27,9 +28,9 @@ class Request(object):
         else:
             cookies = {}
         if self._method == 'post':
-            r = requests.post('http://modouwifi.net/api/%s' % self.api_url, data=json.dumps(data))
+            r = requests.post(self.API + '%s' % self.api_url, data=json.dumps(data), cookies=cookies)
         else:
-            r = requests.get('http://modouwifi.net/api/%s' % self.api_url, cookies=cookies)
+            r = requests.get(self.API + '%s' % self.api_url, cookies=cookies)
         if r.status_code == 200:
             result = r.json()
             print result
@@ -68,3 +69,11 @@ if __name__ == '__main__':
     modou.get.system__check_upgrade_global_status()
     modou.get.system__check_remote_version_upgrade()
     modou.get.system__get_ucode()
+    modou.get.security__get_config()
+    modou.get.security__check_permission()
+    modou.get.wan__get_info()
+    modou.get.wan__is_internet_available()
+    modou.get.system__get_cable_connection()
+    modou.get.plugin__installed_plugins()
+    modou.post.commands__run(cmd='echo "Hello, Modou."')
+    modou.get.screenshot()
