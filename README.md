@@ -1,5 +1,3 @@
 # 魔豆路由器Python客户端
 
-哪尼，魔豆路由器竟然没有Python客户端，老黄你让Python社区好桑心。
-
-我来挖个坑，不一定会填哦。
+参考[官方API手册](http://www.cmbc.com.cn/mst/download.html)
